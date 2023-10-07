@@ -9,6 +9,7 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 import ContactPage from "./view/contactPage";
+import "./styles/style.css";
 
 export default function App() {
   return (
@@ -33,7 +34,6 @@ const Wrapper = styled.main`
   height: calc(100% - 70px);
   width: calc(100vw - 75px);
   overflow-y: hidden;
- 
   display: block;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;

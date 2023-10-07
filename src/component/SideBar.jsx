@@ -1,12 +1,16 @@
 // Sidebar.js
-import React from 'react';
-import styled from 'styled-components';
-
-
+import React from "react";
+import styled from "styled-components";
+import logo from "../assets/logo_garage.png";
+import { PlaceImage } from "./PlaceImage";
 
 const Sidebar = () => {
-    return (
+  return (
+    <div>
       <SidebarContainer>
+        <LogoContainer>
+          <PlaceImage place={logo} imageSize={150} />
+        </LogoContainer>
         <List>
           <ListItem>
             <Link href="/accueil">Accueil</Link>
@@ -16,18 +20,16 @@ const Sidebar = () => {
           </ListItem>
         </List>
       </SidebarContainer>
-    );
+    </div>
+  );
 };
-
-
-
 
 export default Sidebar;
 
 const SidebarContainer = styled.div`
   width: 250px;
   height: 100%;
-  background-color: #333;
+  background-color: #222;
   color: #fff;
   position: fixed;
   top: 0;
@@ -66,4 +68,22 @@ const Link = styled.a`
   &:hover {
     color: #00bcd4;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  display: block;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #00bcd4;
+  }
+`;
+
+const LogoContainer = styled.div`
+  margin: 20px 0;
+  text-align: center;
+  width: 100%;
 `;

@@ -36,6 +36,7 @@ const SidebarContainer = styled.div`
   left: 0;
   overflow-y: auto;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  position: obsolute;
 `;
 
 const List = styled.ul`

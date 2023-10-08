@@ -30,7 +30,7 @@ export default function App() {
 }
 
 const Wrapper = styled.main`
-  margin-left: 255px;
+  
   height: calc(100% - 70px);
   width: calc(100vw - 75px);
   overflow-y: hidden;
@@ -39,4 +39,11 @@ const Wrapper = styled.main`
   -moz-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  
+  overflow-x: auto;
+
+  
+
+  box-sizing: border-box;
+  padding-left: 255px;
 `;

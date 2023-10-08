@@ -28,20 +28,14 @@ const GridList = () => {
           <GridItem>
             <ItemRow>
               <h4>Marque: {usedVehicle.brand}</h4>
-             
-
               <h4>Description:</h4>
               <p>{usedVehicle.description}</p>
-
               <h4>Année:</h4>
               <p>{usedVehicle.year_circulation}</p>
-
               <h4>Kilométrage:</h4>
               <p>{usedVehicle.mileage}</p>
-
               <h4>Prix:</h4>
               <p>{usedVehicle.price} €</p>
-
               <h4>Détail:</h4>
               <p>{usedVehicle.vehicle_management}</p>
             </ItemRow>

@@ -16,6 +16,9 @@ const Sidebar = () => {
             <Link href="/accueil">Accueil</Link>
           </ListItem>
           <ListItem>
+            <Link href="/customer">Customer</Link>{" "}
+          </ListItem>
+          <ListItem>
             <Link href="/contact">Contact</Link>
           </ListItem>
         </List>
@@ -29,14 +32,13 @@ export default Sidebar;
 const SidebarContainer = styled.div`
   width: 250px;
   height: 100%;
-  background-color: #222;
-  color: #fff;
+  background-color: #222; /* Arrière-plan blanc */
+  color: #fff; /* Couleur du texte */
   position: fixed;
   top: 0;
   left: 0;
   overflow-y: auto;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  position: obsolute;
 `;
 
 const List = styled.ul`
@@ -73,10 +75,10 @@ const Link = styled.a`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #fff;
   font-size: 18px;
   display: block;
   transition: color 0.3s;
+  color: #fff;
 
   &:hover {
     color: #00bcd4;
@@ -84,7 +86,6 @@ const StyledLink = styled(Link)`
 `;
 
 const LogoContainer = styled.div`
-  margin: 20px 0;
   text-align: center;
-  width: 100%;
+  margin-top: 20px;
 `;

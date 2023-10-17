@@ -6,7 +6,7 @@ import GridList from "../component/Grid";
 const HomePage = () => {
     return (
       <div>
-        <h1>Accueil</h1>
+        <h1>Horaire</h1>
         <GridList />
       </div>
     );

@@ -11,6 +11,7 @@ import {
 import ContactPage from "./view/contactPage";
 import "./styles/style.css";
 import CustomerPage from "./view/customerPage";
+import HourPage from "./view/hourPage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/accueil" element={<HomePage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/hour" element={<HourPage />} /> 
             <Route path="/customer" element={<CustomerPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

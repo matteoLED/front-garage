@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const ContactContainer = () => {
@@ -27,6 +27,7 @@ const ContactContainer = () => {
       })
       .then((data) => {
         // Réinitialiser le formulaire ou faire toute autre action après la création
+        setFormData((prevContact) => [...prevContact, data]);
         console.log("Contact créé :", data);
       })
       .catch((error) => {
@@ -41,7 +42,7 @@ const ContactContainer = () => {
 
   return (
     <div>
-       <ContactTitle>Contact</ContactTitle>
+      <ContactTitle>Contact</ContactTitle>
       <ContactForm onSubmit={handleSubmit}>
         <FormField>
           <label htmlFor="firstname">Prénom :</label>
@@ -89,10 +90,9 @@ const ContactContainer = () => {
         </FormField>
         <SubmitButton type="submit">Envoyer</SubmitButton>
       </ContactForm>
-  </div>)
+    </div>
+  );
 };
-
-
 
 const ContactTitle = styled.h1`
   font-size: 24px;

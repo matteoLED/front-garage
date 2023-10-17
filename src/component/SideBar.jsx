@@ -16,7 +16,7 @@ const Sidebar = () => {
             <Link href="/accueil">Accueil</Link>
           </ListItem>
           <ListItem>
-            <Link href="/customer">Customer</Link>{" "}
+            <Link href="/customer">Témoignage</Link>{" "}
           </ListItem>
           <ListItem>
             <Link href="/contact">Contact</Link>

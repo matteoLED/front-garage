@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 
-const Contact = () => {
+const ContactContainer = () => {
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -41,7 +41,7 @@ const Contact = () => {
 
   return (
     <div>
-       <ContactTitle>Contactez-nous</ContactTitle>
+       <ContactTitle>Contact</ContactTitle>
       <ContactForm onSubmit={handleSubmit}>
         <FormField>
           <label htmlFor="firstname">Prénom :</label>
@@ -92,14 +92,7 @@ const Contact = () => {
   </div>)
 };
 
-const ContactContainer = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-`;
+
 
 const ContactTitle = styled.h1`
   font-size: 24px;
@@ -142,4 +135,4 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default Contact;
+export default ContactContainer;

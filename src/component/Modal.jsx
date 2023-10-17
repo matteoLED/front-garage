@@ -1,32 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 import Modal from "react-modal";
-import Button from "@mui/material/Button";
-import Contact from "./ContactContainer";
+import IconButton from "@mui/material/IconButton";
 
-const ContactModal = ({ isModalOpen, setIsModalOpen }) => {
+import CloseIcon from "@mui/icons-material/Close";
+
+
+const GlobalModal = ({ isModalOpen, setIsModalOpen, body }) => {
   return (
     <Modal
       isOpen={isModalOpen}
       onRequestClose={() => setIsModalOpen(false)}
-      contentLabel="Témoignage Client Modal"
       style={modalStyles}
     >
-      <Contact />
-      <Button onClick={() => setIsModalOpen(false)}>Fermer</Button>
+      <CloseButtonContainer>
+        <IconButton onClick={() => setIsModalOpen(false)}>
+          <CloseIcon />
+        </IconButton>
+      </CloseButtonContainer>
+        {body}
     </Modal>
   );
 };
 
-const ModalContent = styled.div`
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: 0 auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+const CloseButtonContainer = styled.div`
+  text-align: right;
+  margin-bottom: 10px;
 `;
-
 const modalStyles = {
   content: {
     height: "500px",
@@ -35,4 +35,4 @@ const modalStyles = {
   },
 };
 
-export default ContactModal;
+export default GlobalModal;

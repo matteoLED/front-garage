@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
-import ContactModal from "../component/Modal";
-
+import Modal from "../component/Modal";
+import ContactContainer from "../component/ContactContainer";
 
 const ContactPage = () => {
   const [contacts, setContact] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/contacts")
@@ -25,23 +25,27 @@ const ContactPage = () => {
   return (
     <Container>
       <h1>Contact </h1>
-      <Button onClick={() => setIsModalOpen(true)}>Ouvrir la Modal</Button>
-      <Testimonials>
+      <ButtonPosition>
+        <Button onClick={() => setIsModalOpen(true)}>Ajouter un contact</Button>
+      </ButtonPosition>
+
+      <Contacts>
         {contacts.map((contact) => (
-          <Testimonial key={contact.contact_id}>
+          <Contact key={contact.contact_id}>
             <Author>
               - {contact.lastname} {contact.firstname}
             </Author>
             <Quote>{contact.message}</Quote>
 
             <Author>Contact par {contact.email}</Author>
-          </Testimonial>
+          </Contact>
         ))}
-      </Testimonials>
+      </Contacts>
       {isModalOpen && (
-        <ContactModal
+        <Modal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
+          body={<ContactContainer />}
         />
       )}
     </Container>
@@ -51,17 +55,16 @@ const ContactPage = () => {
 const Container = styled.div`
   text-align: center;
   padding: 20px;
-  
 `;
 
-const Testimonials = styled.div`
+const Contacts = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
 `;
 
-const Testimonial = styled.div`
+const Contact = styled.div`
   background-color: #f4f4f4;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -84,6 +87,11 @@ const Author = styled.p`
   font-size: 14px;
   font-weight: bold;
   margin-top: 10px;
+`;
+
+const ButtonPosition = styled.div`
+  text-align: right;
+  margin-bottom: 10px;
 `;
 
 export default ContactPage;

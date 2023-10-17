@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Button from "@mui/material/Button";
+
+import StarIcon from "@mui/icons-material/Star";
+import Customer from "../component/CustomerContainer";
+import Modal from "../component/Modal";
 
 const CustomerPage = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/customer/testimonials")
@@ -21,14 +27,29 @@ const CustomerPage = () => {
   return (
     <Container>
       <h1>Témoignage Client</h1>
+      <ButtonPosition>
+        <Button onClick={() => setIsModalOpen(true)}>
+          Ajouter un témoignage
+        </Button>
+      </ButtonPosition>
       <Testimonials>
         {testimonials.map((testimonial) => (
           <Testimonial key={testimonial.testimonial_id}>
             <Quote>{testimonial.comment}</Quote>
             <Author>- {testimonial.client_name}</Author>
+            {Array.from({ length: testimonial.rating }).map((_, index) => (
+              <StarIcon key={index} />
+            ))}
           </Testimonial>
         ))}
       </Testimonials>
+      {isModalOpen && (
+        <Modal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          body={<Customer />}
+        />
+      )}
     </Container>
   );
 };
@@ -36,7 +57,6 @@ const CustomerPage = () => {
 const Container = styled.div`
   text-align: center;
   padding: 20px;
-  
 `;
 
 const Testimonials = styled.div`
@@ -69,6 +89,10 @@ const Author = styled.p`
   font-size: 14px;
   font-weight: bold;
   margin-top: 10px;
+`;
+const ButtonPosition = styled.div`
+  text-align: right;
+  margin-bottom: 10px;
 `;
 
 export default CustomerPage;

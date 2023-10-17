@@ -2,6 +2,7 @@ import React from "react";
 import GridList from "../component/Grid";
 
 
+
 const HomePage = () => {
     return (
       <div>

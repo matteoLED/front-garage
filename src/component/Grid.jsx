@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { PlaceImage } from "./PlaceImage";
 import Box from "@mui/material/Box";
+import ProgressBarFilter from "./ProgressBar";
 
 const GridList = () => {
   const [usedVehicles, setData] = useState([]);
@@ -18,11 +19,22 @@ const GridList = () => {
       .catch((error) => console.error(error));
   }, []);
 
+  const handleSliderChange = (filteredCars) => {
+    setData(filteredCars);
+  };
+
   if (usedVehicles.length === 0) {
-    return <div>Loading...</div>;
+    return <div>Aucun véhicule trouvé</div>;
   }
   return (
     <div>
+      <div className="progress-bar-row-container">
+        <ProgressBarFilter
+          cars={usedVehicles}
+          onFilterApplied={handleSliderChange}
+        />
+      </div>
+
       {usedVehicles.map((usedVehicle) => (
         <Grid item xs={12} sm={6} md={3} key={usedVehicle.used_vehicle_id}>
           <GridItem>

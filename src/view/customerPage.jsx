@@ -7,7 +7,6 @@ const CustomerPage = () => {
   return (
     <div>
       <h1>Témoignage Client</h1>
-
     </div>
   );
 };

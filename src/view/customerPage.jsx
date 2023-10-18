@@ -74,11 +74,6 @@ const CustomerPage = () => {
           <Testimonials>
             {testimonials.map((testimonial) => (
               <Testimonial key={testimonial.testimonial_id}>
-                <Quote>{testimonial.comment}</Quote>
-                <Author>- {testimonial.client_name}</Author>
-                {Array.from({ length: testimonial.rating }).map((_, index) => (
-                  <StarIcon key={index} />
-                ))}
                 {(userRole === "administrateur" ||
                   userRole === "employees") && (
                   <CloseButtonContainer>
@@ -91,6 +86,11 @@ const CustomerPage = () => {
                     </CloseButton>
                   </CloseButtonContainer>
                 )}
+                <Quote>{testimonial.comment}</Quote>
+                <Author>- {testimonial.client_name}</Author>
+                {Array.from({ length: testimonial.rating }).map((_, index) => (
+                  <StarIcon key={index} />
+                ))}
               </Testimonial>
             ))}
           </Testimonials>

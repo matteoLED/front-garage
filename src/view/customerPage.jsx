@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import StarIcon from "@mui/icons-material/Star";
 import Customer from "../component/CustomerContainer";
 import Modal from "../component/Modal";
+import AppBar from "../component/AppBar";
 
 const CustomerPage = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -25,32 +26,37 @@ const CustomerPage = () => {
     return <div>Aucun témoignage trouvé</div>;
   }
   return (
-    <Container>
-      <h1>Témoignage Client</h1>
-      <ButtonPosition>
-        <Button onClick={() => setIsModalOpen(true)}>
-          Ajouter un témoignage
-        </Button>
-      </ButtonPosition>
-      <Testimonials>
-        {testimonials.map((testimonial) => (
-          <Testimonial key={testimonial.testimonial_id}>
-            <Quote>{testimonial.comment}</Quote>
-            <Author>- {testimonial.client_name}</Author>
-            {Array.from({ length: testimonial.rating }).map((_, index) => (
-              <StarIcon key={index} />
+    <div>
+      <AppBar />
+      <div className="content">
+        <Container>
+          <h1>Témoignage Client</h1>
+          <ButtonPosition>
+            <Button onClick={() => setIsModalOpen(true)}>
+              Ajouter un témoignage
+            </Button>
+          </ButtonPosition>
+          <Testimonials>
+            {testimonials.map((testimonial) => (
+              <Testimonial key={testimonial.testimonial_id}>
+                <Quote>{testimonial.comment}</Quote>
+                <Author>- {testimonial.client_name}</Author>
+                {Array.from({ length: testimonial.rating }).map((_, index) => (
+                  <StarIcon key={index} />
+                ))}
+              </Testimonial>
             ))}
-          </Testimonial>
-        ))}
-      </Testimonials>
-      {isModalOpen && (
-        <Modal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          body={<Customer />}
-        />
-      )}
-    </Container>
+          </Testimonials>
+          {isModalOpen && (
+            <Modal
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+              body={<Customer />}
+            />
+          )}
+        </Container>
+      </div>
+    </div>
   );
 };
 

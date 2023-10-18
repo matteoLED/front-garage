@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthContext";
 import { Button, TextField } from "@mui/material";
 import HomePage from "./homePage";
 
-const LoginPage = () => {
+const LoginPage = ({setIsLoggedIn}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -39,6 +39,7 @@ const LoginPage = () => {
           "userId",
           response.data.userId
         );
+        
         // Appeler la fonction login du contexte d'authentification avec les données de l'utilisateur
         login({
           ...response.data.user,
@@ -47,10 +48,9 @@ const LoginPage = () => {
           sessionID,
           sessiontType,
         });
-
+ setIsLoggedIn(true);
         // Rediriger vers la page d'accueil
         navigate("/accueil");
-
       })
       .catch((error) => {
         // Gérer les erreurs de connexion
@@ -61,21 +61,6 @@ const LoginPage = () => {
     setEmail("");
     setPassword("");
   };
-
-  // useEffect(() => {
-  //   // Vérifier si les informations d'identification sont présentes dans le sessionStorage
-  //   const userType = sessionStorage.getItem('userType');
-  //   const userId = sessionStorage.getItem('userId');
-
-  //   if (userType && userId) {
-  //     // Effectuer une vérification d'authentification automatique en utilisant les informations d'identification
-  //     // Appeler la fonction login du contexte d'authentification avec les informations de l'utilisateur
-  //     login({ userType: userType, userId: userId });
-
-  //     // Rediriger vers la page d'accueil
-  //     navigate('/accueil');
-  //   }
-  // }, [login, navigate]);
 
   return (
     <div

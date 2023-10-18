@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "@mui/material/Button";
 import Modal from "../component/Modal";
 import ContactContainer from "../component/ContactContainer";
+import AppBar from "../component/AppBar";
 
 const ContactPage = () => {
   const [contacts, setContact] = useState([]);
@@ -23,32 +24,38 @@ const ContactPage = () => {
     return <div>Aucun Contact trouvé</div>;
   }
   return (
-    <Container>
-      <h1>Contact </h1>
-      <ButtonPosition>
-        <Button onClick={() => setIsModalOpen(true)}>Ajouter un contact</Button>
-      </ButtonPosition>
+    <div>
+      {" "}
+      <AppBar />
+      <Container>
+        <h1>Contact </h1>
+        <ButtonPosition>
+          <Button onClick={() => setIsModalOpen(true)}>
+            Ajouter un contact
+          </Button>
+        </ButtonPosition>
 
-      <Contacts>
-        {contacts.map((contact) => (
-          <Contact key={contact.contact_id}>
-            <Author>
-              - {contact.lastname} {contact.firstname}
-            </Author>
-            <Quote>{contact.message}</Quote>
+        <Contacts>
+          {contacts.map((contact) => (
+            <Contact key={contact.contact_id}>
+              <Author>
+                - {contact.lastname} {contact.firstname}
+              </Author>
+              <Quote>{contact.message}</Quote>
 
-            <Author>Contact par {contact.email}</Author>
-          </Contact>
-        ))}
-      </Contacts>
-      {isModalOpen && (
-        <Modal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          body={<ContactContainer />}
-        />
-      )}
-    </Container>
+              <Author>Contact par {contact.email}</Author>
+            </Contact>
+          ))}
+        </Contacts>
+        {isModalOpen && (
+          <Modal
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            body={<ContactContainer />}
+          />
+        )}
+      </Container>
+    </div>
   );
 };
 

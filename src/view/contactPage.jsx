@@ -4,10 +4,13 @@ import Button from "@mui/material/Button";
 import Modal from "../component/Modal";
 import ContactContainer from "../component/ContactContainer";
 import AppBar from "../component/AppBar";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthContext";
 
 const ContactPage = () => {
   const [contacts, setContact] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { userType } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/contacts")
@@ -30,9 +33,11 @@ const ContactPage = () => {
       <Container>
         <h1>Contact </h1>
         <ButtonPosition>
-          <Button onClick={() => setIsModalOpen(true)}>
-            Ajouter un contact
-          </Button>
+          {userType === "administrateur" &&"employees" (
+            <Button onClick={() => setIsModalOpen(true)}>
+              Ajouter un contact
+            </Button>
+          )}
         </ButtonPosition>
 
         <Contacts>

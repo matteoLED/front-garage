@@ -34,7 +34,6 @@ const CustomerContainer = () => {
         console.log("Témoignage client créé :", data);
 
         setFormData((prevTestimonials) => [...prevTestimonials, data]);
-        
       })
       .catch((error) => {
         console.error(error);

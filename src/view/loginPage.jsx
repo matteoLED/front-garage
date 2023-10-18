@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthContext";
 import { Button, TextField } from "@mui/material";
 import HomePage from "./homePage";
 
-const LoginPage = ({setIsLoggedIn}) => {
+const LoginPage = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const LoginPage = ({setIsLoggedIn}) => {
           "userId",
           response.data.userId
         );
-        
+
         // Appeler la fonction login du contexte d'authentification avec les données de l'utilisateur
         login({
           ...response.data.user,
@@ -48,7 +48,7 @@ const LoginPage = ({setIsLoggedIn}) => {
           sessionID,
           sessiontType,
         });
- setIsLoggedIn(true);
+        setIsLoggedIn(true);
         // Rediriger vers la page d'accueil
         navigate("/accueil");
       })

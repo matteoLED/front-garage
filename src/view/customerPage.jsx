@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 
@@ -6,10 +6,45 @@ import StarIcon from "@mui/icons-material/Star";
 import Customer from "../component/CustomerContainer";
 import Modal from "../component/Modal";
 import AppBar from "../component/AppBar";
+import { AuthContext } from "../providers/AuthContext";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 const CustomerPage = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const userRole = useContext(AuthContext);
+
+  const handleDeleteTestimonial = (testimonialId) => {
+    // Vérifiez les autorisations de l'utilisateur ici
+    // Remplacez cela par la fonction qui récupère le rôle de l'utilisateur
+
+    if (userRole === "administrateur" || userRole === "employees") {
+      // L'utilisateur a les autorisations, envoyez une demande de suppression
+      fetch(`http://localhost:8000/api/customer/testimonial/${testimonialId}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.ok) {
+            // Suppression réussie, mettez à jour la liste des témoignages
+            setFormData((prevTestimonials) =>
+              prevTestimonials.filter(
+                (item) => item.testimonialId !== testimonialId
+              )
+            );
+          } else {
+            throw new Error("Erreur lors de la suppression du témoignage.");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      alert(
+        "Vous n'avez pas les autorisations nécessaires pour supprimer ce témoignage."
+      );
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost:8000/api/customer/testimonials")
@@ -44,6 +79,18 @@ const CustomerPage = () => {
                 {Array.from({ length: testimonial.rating }).map((_, index) => (
                   <StarIcon key={index} />
                 ))}
+                {(userRole === "administrateur" ||
+                  userRole === "employees") && (
+                  <CloseButtonContainer>
+                    <CloseButton
+                      onClick={() =>
+                        handleDeleteTestimonial(testimonial.testimonial_id)
+                      }
+                    >
+                      <CloseIcon />
+                    </CloseButton>
+                  </CloseButtonContainer>
+                )}
               </Testimonial>
             ))}
           </Testimonials>
@@ -66,10 +113,18 @@ const Container = styled.div`
 `;
 
 const Testimonials = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
+`;
+
+const CloseButtonContainer = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  visibility: hidden;
 `;
 
 const Testimonial = styled.div`
@@ -84,6 +139,9 @@ const Testimonial = styled.div`
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Légère élévation au survol */
+    ${CloseButtonContainer} {
+      visibility: visible;
+    }
   }
 `;
 
@@ -99,6 +157,10 @@ const Author = styled.p`
 const ButtonPosition = styled.div`
   text-align: right;
   margin-bottom: 10px;
+`;
+
+const CloseButton = styled.div`
+  cursor: pointer;
 `;
 
 export default CustomerPage;

@@ -12,11 +12,12 @@ import ContactPage from "./view/contactPage";
 import CreateUserPage from "./view/RegisterPage";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/register" element={<CreateUserPage />} />
           <Route path="/accueil" element={<HomePage />} />
 

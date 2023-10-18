@@ -9,7 +9,6 @@ const HoraireContainer = () => {
       try {
         const response = await fetch("http://localhost:8000/api/hours");
         const data = await response.json();
-        console.log(data);
         setHoraires(data.data);
       } catch (error) {
         console.error(

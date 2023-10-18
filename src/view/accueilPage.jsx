@@ -17,12 +17,11 @@ function AccueilPage() {
       <p>Utilisateur connecté en tant que : {userType}</p>
       <h1 style={{ marginLeft: "20px" }}>Accueil</h1>
       <ButtonPosition>
-        {userType === "administrateur" || userType ===
-          "employees"(
-            <Button onClick={() => setIsModalOpen(true)}>
-              Ajouter un véhicule
-            </Button>
-          )}
+        {userType === "administrateur" || userType === "employees" ? (
+          <Button onClick={() => setIsModalOpen(true)}>
+            Ajouter un véhicule
+          </Button>
+        ) : null}
       </ButtonPosition>
       {isModalOpen && (
         <Modal

@@ -74,18 +74,13 @@ const CustomerPage = () => {
           <Testimonials>
             {testimonials.map((testimonial) => (
               <Testimonial key={testimonial.testimonial_id}>
-                {(userRole === "administrateur" ||
-                  userRole === "employees") && (
+                {userRole === "administrateur" || userRole === "employees" ? (
                   <CloseButtonContainer>
-                    <CloseButton
-                      onClick={() =>
-                        handleDeleteTestimonial(testimonial.testimonial_id)
-                      }
-                    >
+                    <IconButton onClick={() => handleDeleteTestimonial(testimonial.testimonial_id)}>
                       <CloseIcon />
-                    </CloseButton>
+                    </IconButton>
                   </CloseButtonContainer>
-                )}
+                ) : null}
                 <Quote>{testimonial.comment}</Quote>
                 <Author>- {testimonial.client_name}</Author>
                 {Array.from({ length: testimonial.rating }).map((_, index) => (
@@ -159,8 +154,6 @@ const ButtonPosition = styled.div`
   margin-bottom: 10px;
 `;
 
-const CloseButton = styled.div`
-  cursor: pointer;
-`;
+
 
 export default CustomerPage;

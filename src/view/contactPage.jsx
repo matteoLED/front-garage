@@ -33,11 +33,11 @@ const ContactPage = () => {
       <Container>
         <h1>Contact </h1>
         <ButtonPosition>
-          {userType === "administrateur" &&"employees" (
+          {(userType === "administrateur" || userType==="employees") ?(
             <Button onClick={() => setIsModalOpen(true)}>
               Ajouter un contact
             </Button>
-          )}
+          ):null}
         </ButtonPosition>
 
         <Contacts>

@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import appbarStyle from "../styles/appBar.css";
+import "../styles/appbar.css";
 import logo from "../assets/logo_garage.png";
 
 import { PlaceImage } from "./PlaceImage";
 import styled from "styled-components";
+import { AuthContext } from "../providers/AuthContext";
 
 const AppBar = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(0);
+  const { userType } = useContext(AuthContext);
 
   useEffect(() => {
     // Récupérer l'élément actif depuis le stockage local lors du chargement de la page
@@ -31,7 +33,7 @@ const AppBar = () => {
   };
 
   return (
-    <div className={appbarStyle.appbar}>
+    <div >
       <div className="appbar">
         <div className="tab-container">
           <LogoContainer>
@@ -65,10 +67,21 @@ const AppBar = () => {
           >
             Contact
           </Link>
+          {userType === "administrateur" ? (
+            <Link
+              to="/create/user"
+              className={
+                activeTab === 4 ? "appbar-title active" : "appbar-link"
+              }
+              onClick={() => handleTabClick(4)}
+            >
+              Création de compte 
+            </Link>
+          ) : null}
           <Link
             to="/logout"
-            className={activeTab === 4 ? "appbar-title active" : "appbar-link"}
-            onClick={() => handleTabClick(4)}
+            className={activeTab === 5 ? "appbar-title active" : "appbar-link"}
+            onClick={() => handleTabClick(5)}
           >
             Déconnexion
           </Link>
@@ -89,8 +102,10 @@ const getActiveTab = (pathname) => {
       return 2;
     case "/contact":
       return 3;
-    case "/logout":
+    case "/create/user":
       return 4;
+    case "/logout":
+      return 5;
     default:
       return 0;
   }

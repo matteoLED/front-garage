@@ -68,7 +68,7 @@ const CreateUserPage = () => {
         setEmail("");
         setPassword("");
         setUserType("");
-        navigate("/connexion");
+        navigate("/accueil");
       })
       .catch((error) => {
         // Gérer les erreurs de la requête si nécessaire
@@ -136,7 +136,7 @@ const CreateUserPage = () => {
             onChange={handleUserTypeChange}
             required
           >
-            <MenuItem value="client">Client</MenuItem>
+            <MenuItem value="employees">Employé</MenuItem>
             <MenuItem value="administrateur">Administrateur</MenuItem>
           </Select>
         </div>

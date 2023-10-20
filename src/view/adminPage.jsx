@@ -4,6 +4,8 @@ import { Button, Select, TextField } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 
+import AppBar from "../component/AppBar";
+
 const CreateUserPage = () => {
   const [firstname, setFirstname] = useState(""); // Utiliser "firstname" au lieu de "nom"
   const [lastname, setLastname] = useState(""); // Utiliser "lastname" au lieu de "nom"
@@ -76,86 +78,90 @@ const CreateUserPage = () => {
       });
   };
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <h2>Créer un compte</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <TextField
-            label="Prénom"
-            sx={{ mb: 1, width: "400px" }}
-            type="text"
-            value={firstname}
-            onChange={handleFirstnameChange}
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            label="Nom"
-            sx={{ mb: 1, width: "400px" }}
-            type="text"
-            value={lastname}
-            onChange={handleLastnameChange}
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            label="Email"
-            sx={{ mb: 1, width: "400px" }}
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            label="Mot de passe"
-            sx={{ mb: 1, width: "400px" }}
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <div sx={{ mb: 1, width: "400px" }}>
-          <label>Rôle :</label>
-          <Select
-            sx={{ mb: 1, width: "260px" }}
-            value={user_type}
-            onChange={handleUserTypeChange}
-            required
-          >
-            <MenuItem value="employees">Employé</MenuItem>
-            <MenuItem value="administrateur">Administrateur</MenuItem>
-          </Select>
-        </div>
-        <Button
-          variant="outlined"
+    return (
+      <div>
+        {" "}
+        <AppBar />
+        <div
           style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             justifyContent: "center",
-            width: "400px",
-            height: 50,
-            borderColor: "#8B4513",
-            color: "#8B4513",
+            minHeight: "100vh",
           }}
-          type="submit"
         >
-          Créer
-        </Button>
-      </form>
-    </div>
-  );
+          <h2>Créer un compte</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <TextField
+                label="Prénom"
+                sx={{ mb: 1, width: "400px" }}
+                type="text"
+                value={firstname}
+                onChange={handleFirstnameChange}
+                required
+              />
+            </div>
+            <div>
+              <TextField
+                label="Nom"
+                sx={{ mb: 1, width: "400px" }}
+                type="text"
+                value={lastname}
+                onChange={handleLastnameChange}
+                required
+              />
+            </div>
+            <div>
+              <TextField
+                label="Email"
+                sx={{ mb: 1, width: "400px" }}
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+            </div>
+            <div>
+              <TextField
+                label="Mot de passe"
+                sx={{ mb: 1, width: "400px" }}
+                type="password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+              />
+            </div>
+            <div sx={{ mb: 1, width: "400px" }}>
+              <label>Rôle :</label>
+              <Select
+                sx={{ mb: 1, width: "260px" }}
+                value={user_type}
+                onChange={handleUserTypeChange}
+                required
+              >
+                <MenuItem value="employees">Employé</MenuItem>
+                <MenuItem value="administrateur">Administrateur</MenuItem>
+              </Select>
+            </div>
+            <Button
+              variant="outlined"
+              style={{
+                justifyContent: "center",
+                width: "400px",
+                height: 50,
+                borderColor: "#8B4513",
+                color: "#8B4513",
+              }}
+              type="submit"
+            >
+              Créer
+            </Button>
+          </form>
+        </div>
+      </div>
+    );
 };
 
 export default CreateUserPage;

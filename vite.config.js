@@ -23,7 +23,7 @@ export default defineConfig({
 
     build: {
         rollupOptions: {
-            input: 'main.jsx',
+            input: '/src/main.jsx',
         },
     
     },
